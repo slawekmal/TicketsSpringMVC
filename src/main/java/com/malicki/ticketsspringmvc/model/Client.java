@@ -33,7 +33,7 @@ public class Client implements Serializable {
     @Column(name = "password")
     private String password;
     
-    @OneToMany(mappedBy = "ticket")
+    @OneToMany(mappedBy = "client")
     private Set<Ticket> tickets;
 
     public int getId() {

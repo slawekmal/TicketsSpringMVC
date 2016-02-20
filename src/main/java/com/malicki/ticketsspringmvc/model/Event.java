@@ -35,7 +35,7 @@ public class Event implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Calendar date;
     
-    @OneToMany(mappedBy = "ticket")
+    @OneToMany(mappedBy = "event")
     private Set<Ticket> tickets;
 
     public int getId() {

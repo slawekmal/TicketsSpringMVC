@@ -35,7 +35,7 @@ public class Place implements Serializable {
     @Column(name = "capacity")
     private int capacity;
     
-    @OneToMany(mappedBy = "event")
+    @OneToMany(mappedBy = "place")
     private Set<Event> events;
 
     public int getId() {

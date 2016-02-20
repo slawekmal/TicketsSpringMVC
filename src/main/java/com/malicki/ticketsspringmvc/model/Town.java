@@ -22,7 +22,7 @@ public class Town implements Serializable {
     @Column(name = "name")
     private String name;
     
-    @OneToMany(mappedBy = "place")
+    @OneToMany(mappedBy = "town")
     private Set<Place> places;
 
     public int getId() {
