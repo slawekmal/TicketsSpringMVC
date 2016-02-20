@@ -1,16 +1,18 @@
 package com.malicki.ticketsspringmvc.model;
 
 import java.io.Serializable;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.validator.constraints.Email;
 
 @Entity
-@Table(name = "CLIENT")
+@Table(name = "client")
 public class Client implements Serializable {
 
     @Id
@@ -30,6 +32,9 @@ public class Client implements Serializable {
     
     @Column(name = "password")
     private String password;
+    
+    @OneToMany(mappedBy = "ticket")
+    private Set<Ticket> tickets;
 
     public int getId() {
         return id;
@@ -71,6 +76,15 @@ public class Client implements Serializable {
         this.password = password;
     }
 
+    public Set<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(Set<Ticket> tickets) {
+        this.tickets = tickets;
+    }
+
+    
     @Override
     public String toString() {
         return "User{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", password=" + password + '}';

@@ -26,11 +26,12 @@
     <bean id="hibernate4AnnotatedSessionFactory"
               class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <property name="annotatedClasses">
+<!--        <property name="annotatedClasses">
             <list>
                 <value>com.malicki.ticketsspringmvc.model.Client</value>
             </list>
-        </property>
+        </property>-->
+        <property name="packagesToScan" value="com.malicki.ticketsspringmvc.model" />
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect
