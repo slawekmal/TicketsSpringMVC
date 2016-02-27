@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping(value = "/", method = RequestMethod.GET)
+@RequestMapping(value = "/event", method = RequestMethod.GET)
 public class EventController {
     
 private EventService eventService;
