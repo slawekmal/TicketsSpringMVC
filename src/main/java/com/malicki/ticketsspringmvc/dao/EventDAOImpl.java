@@ -6,8 +6,9 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 
-
+@Repository
 public class EventDAOImpl implements EventDAO {
     
     private static final Logger logger = LoggerFactory.getLogger(EventDAOImpl.class);

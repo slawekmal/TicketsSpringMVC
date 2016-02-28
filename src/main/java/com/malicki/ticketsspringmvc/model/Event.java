@@ -25,13 +25,13 @@ public class Event implements Serializable {
     private int id;
     
     @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name = "place_id")
+    @JoinColumn(name = "place_id", nullable = true)
     private Place place;
     
     @Column(name = "name")
     private String name;
     
-    @Column(name = "date")
+    @Column(name = "date", nullable = true)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Calendar date;
     

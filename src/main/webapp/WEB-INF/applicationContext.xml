@@ -41,7 +41,15 @@
             </props>
         </property>
     </bean>
-    <context:component-scan base-package="com.malicki.TicketsSpringMVC" />
+    	<bean id="eventDAO" class="com.malicki.ticketsspringmvc.dao.EventDAOImpl">
+		<property name="sessionFactory"
+			ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
+	<bean id="eventService"
+		class="com.malicki.ticketsspringmvc.service.EventServiceImpl">
+		<property name="eventDAO" ref="eventDAO" />
+	</bean>
+    <context:component-scan base-package="com.malicki.ticketsspringmvc" />
 
     <tx:annotation-driven transaction-manager="transactionManager" />
 
