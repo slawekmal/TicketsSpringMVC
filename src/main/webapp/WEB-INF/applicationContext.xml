@@ -49,6 +49,22 @@
 		class="com.malicki.ticketsspringmvc.service.EventServiceImpl">
 		<property name="eventDAO" ref="eventDAO" />
 	</bean>
+        <bean id="placeDAO" class="com.malicki.ticketsspringmvc.dao.PlaceDAOImpl">
+		<property name="sessionFactory"
+			ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
+	<bean id="placeService"
+		class="com.malicki.ticketsspringmvc.service.PlaceServiceImpl">
+		<property name="placeDAO" ref="placeDAO" />
+	</bean>
+        <bean id="townDAO" class="com.malicki.ticketsspringmvc.dao.TownDAOImpl">
+		<property name="sessionFactory"
+			ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
+	<bean id="townService"
+		class="com.malicki.ticketsspringmvc.service.TownServiceImpl">
+		<property name="townDAO" ref="townDAO" />
+	</bean>
     <context:component-scan base-package="com.malicki.ticketsspringmvc" />
 
     <tx:annotation-driven transaction-manager="transactionManager" />

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping(value = "/", method = RequestMethod.GET)
+//@RequestMapping(value = "/", method = RequestMethod.GET)
 public class EventController {
 
     private EventService eventService;
@@ -31,7 +31,7 @@ public class EventController {
     }
 
     //For add and update event both
-    @RequestMapping(value = "/event/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/events/add", method = RequestMethod.POST)
     public String addEvent(@ModelAttribute("event") Event e) {
 
         if (e.getId() == 0) {
@@ -46,14 +46,14 @@ public class EventController {
 
     }
 
-    @RequestMapping("/remove/{id}")
+    @RequestMapping("/events/remove/{id}")
     public String removeEvent(@PathVariable("id") int id) {
 
         this.eventService.removeEvent(id);
         return "redirect:/events";
     }
 
-    @RequestMapping("/edit/{id}")
+    @RequestMapping("/events/edit/{id}")
     public String editEvent(@PathVariable("id") int id, Model model) {
         model.addAttribute("event", this.eventService.getEventById(id));
         model.addAttribute("listEvents", this.eventService.listEvents());

@@ -10,5 +10,9 @@
 
     <body>
         <a href="events.html"> Wydarzenia </a>
+        <a href="towns.html"> Miasta </a>
+        <a href="places.html"> Miejsca </a>
+        <a href="tickets.html"> Bilety </a>
+        <a href="clients.html"> Klienci </a>
     </body>
 </html>

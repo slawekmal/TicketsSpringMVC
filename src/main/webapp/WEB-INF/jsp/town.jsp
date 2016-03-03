@@ -4,7 +4,7 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>Wydarzenia</title>
+	<title>Miasta</title>
 	<style type="text/css">
 		.tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;}
 		.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
@@ -14,14 +14,14 @@
 </head>
 <body>
 <h1>
-	Dodaj wydarzenie
+	Dodaj miasto
 </h1>
 
-<c:url var="addAction" value="/events/add" ></c:url>
+<c:url var="addAction" value="/towns/add" ></c:url>
 
-<form:form action="${addAction}" commandName="event">
+<form:form action="${addAction}" commandName="town">
 <table>
-	<c:if test="${!empty event.name}">
+	<c:if test="${!empty town.name}">
 	<tr>
 		<td>
 			<form:label path="id">
@@ -45,47 +45,35 @@
 		</td> 
 	</tr>
 	<tr>
-		<td>
-			<form:label path="place">
-				<spring:message text="Place"/>
-			</form:label>
-		</td>
-		<td>
-			<form:input path="place" />
-		</td>
-	</tr>
-	<tr>
 		<td colspan="2">
-			<c:if test="${!empty event.name}">
+			<c:if test="${!empty town.name}">
 				<input type="submit"
-					value="<spring:message text="Edit event"/>" />
+					value="<spring:message text="Edit town"/>" />
 			</c:if>
-			<c:if test="${empty event.name}">
+			<c:if test="${empty town.name}">
 				<input type="submit"
-					value="<spring:message text="Add event"/>" />
+					value="<spring:message text="Add town"/>" />
 			</c:if>
 		</td>
 	</tr>
 </table>	
 </form:form>
 <br>
-<h3>Events List</h3>
-<c:if test="${!empty listEvents}">
+<h3>Town List</h3>
+<c:if test="${!empty listTowns}">
 	<table class="tg">
 	<tr>
 		<th width="80">ID</th>
 		<th width="120">Name</th>
-		<th width="120">Place</th>
 		<th width="60">Edit</th>
 		<th width="60">Delete</th>
 	</tr>
-	<c:forEach items="${listEvents}" var="event">
+	<c:forEach items="${listTowns}" var="town">
 		<tr>
-			<td>${event.id}</td>
-			<td>${event.name}</td>
-			<td>${event.place}</td>
-			<td><a href="<c:url value='events/edit/${event.id}' />" >Edit</a></td>
-			<td><a href="<c:url value='events/remove/${event.id}' />" >Delete</a></td>
+			<td>${town.id}</td>
+			<td>${town.name}</td>
+			<td><a href="<c:url value='towns/edit/${town.id}' />" >Edit</a></td>
+			<td><a href="<c:url value='towns/remove/${town.id}' />" >Delete</a></td>
 		</tr>
 	</c:forEach>
 	</table>
