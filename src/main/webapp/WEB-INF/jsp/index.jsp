@@ -14,5 +14,6 @@
         <a href="places.html"> Miejsca </a>
         <a href="tickets.html"> Bilety </a>
         <a href="clients.html"> Klienci </a>
+        <div align="right"> <a href="login.html"> Login </a> </div>
     </body>
 </html>

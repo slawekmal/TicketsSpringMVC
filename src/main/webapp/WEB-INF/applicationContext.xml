@@ -11,22 +11,22 @@
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd 
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-<!--    <bean id="propertyConfigurer"
-      class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
-      p:location="/WEB-INF/jdbc.properties" />-->
+    <!--    <bean id="propertyConfigurer"
+    class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+    p:location="/WEB-INF/jdbc.properties" />-->
 
     <bean id="dataSource"
-      class="org.springframework.jdbc.datasource.DriverManagerDataSource"
-      p:driverClassName="org.postgresql.Driver"
-      p:url="jdbc:postgresql://localhost:5432/postgres"
-      p:username="postgres"
-      p:password="postgres" />
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+          p:driverClassName="org.postgresql.Driver"
+          p:url="jdbc:postgresql://localhost:5432/postgres"
+          p:username="postgres"
+          p:password="postgres" />
 
     <!-- Hibernate 4 SessionFactory Bean definition -->
     <bean id="hibernate4AnnotatedSessionFactory"
-              class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+          class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
-<!--        <property name="annotatedClasses">
+        <!--        <property name="annotatedClasses">
             <list>
                 <value>com.malicki.ticketsspringmvc.model.Client</value>
             </list>
@@ -41,38 +41,50 @@
             </props>
         </property>
     </bean>
-    	<bean id="eventDAO" class="com.malicki.ticketsspringmvc.dao.EventDAOImpl">
-		<property name="sessionFactory"
-			ref="hibernate4AnnotatedSessionFactory" />
-	</bean>
-	<bean id="eventService"
-		class="com.malicki.ticketsspringmvc.service.EventServiceImpl">
-		<property name="eventDAO" ref="eventDAO" />
-	</bean>
-        <bean id="placeDAO" class="com.malicki.ticketsspringmvc.dao.PlaceDAOImpl">
-		<property name="sessionFactory"
-			ref="hibernate4AnnotatedSessionFactory" />
-	</bean>
-	<bean id="placeService"
-		class="com.malicki.ticketsspringmvc.service.PlaceServiceImpl">
-		<property name="placeDAO" ref="placeDAO" />
-	</bean>
-        <bean id="townDAO" class="com.malicki.ticketsspringmvc.dao.TownDAOImpl">
-		<property name="sessionFactory"
-			ref="hibernate4AnnotatedSessionFactory" />
-	</bean>
-	<bean id="townService"
-		class="com.malicki.ticketsspringmvc.service.TownServiceImpl">
-		<property name="townDAO" ref="townDAO" />
-	</bean>
+    <bean id="eventDAO" class="com.malicki.ticketsspringmvc.dao.EventDAOImpl">
+        <property name="sessionFactory"
+                          ref="hibernate4AnnotatedSessionFactory" />
+    </bean>
+    <bean id="eventService"
+              class="com.malicki.ticketsspringmvc.service.EventServiceImpl">
+        <property name="eventDAO" ref="eventDAO" />
+    </bean>
+    <bean id="placeDAO" class="com.malicki.ticketsspringmvc.dao.PlaceDAOImpl">
+        <property name="sessionFactory"
+                          ref="hibernate4AnnotatedSessionFactory" />
+    </bean>
+    <bean id="placeService"
+              class="com.malicki.ticketsspringmvc.service.PlaceServiceImpl">
+        <property name="placeDAO" ref="placeDAO" />
+    </bean>
+    <bean id="townDAO" class="com.malicki.ticketsspringmvc.dao.TownDAOImpl">
+        <property name="sessionFactory"
+                          ref="hibernate4AnnotatedSessionFactory" />
+    </bean>
+    <bean id="townService"
+              class="com.malicki.ticketsspringmvc.service.TownServiceImpl">
+        <property name="townDAO" ref="townDAO" />
+    </bean>
+    <bean id="clientDAO" class="com.malicki.ticketsspringmvc.dao.ClientDAOImpl">
+        <property name="sessionFactory"
+                          ref="hibernate4AnnotatedSessionFactory" />
+    </bean>
+    <bean id="clientService"
+              class="com.malicki.ticketsspringmvc.service.ClientServiceImpl">
+        <property name="clientDAO" ref="clientDAO" />
+    </bean>
+    <bean id="loginDelegate"
+                      class="com.malicki.ticketsspringmvc.delegate.LoginDelegate">
+        <property name="clientService" ref="clientService"></property>
+    </bean>
     <context:component-scan base-package="com.malicki.ticketsspringmvc" />
 
     <tx:annotation-driven transaction-manager="transactionManager" />
 
     <bean id="transactionManager"
-              class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+          class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory"
-                                ref="hibernate4AnnotatedSessionFactory" />
+                  ref="hibernate4AnnotatedSessionFactory" />
     </bean>
 
 </beans>
