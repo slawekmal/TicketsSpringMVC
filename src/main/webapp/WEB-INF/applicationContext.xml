@@ -73,10 +73,6 @@
               class="com.malicki.ticketsspringmvc.service.ClientServiceImpl">
         <property name="clientDAO" ref="clientDAO" />
     </bean>
-    <bean id="loginDelegate"
-                      class="com.malicki.ticketsspringmvc.delegate.LoginDelegate">
-        <property name="clientService" ref="clientService"></property>
-    </bean>
     <context:component-scan base-package="com.malicki.ticketsspringmvc" />
 
     <tx:annotation-driven transaction-manager="transactionManager" />

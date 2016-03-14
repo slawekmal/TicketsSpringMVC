@@ -1,7 +1,8 @@
 package com.malicki.ticketsspringmvc.controller;
 
-import com.malicki.ticketsspringmvc.delegate.LoginDelegate;
 import com.malicki.ticketsspringmvc.model.Client;
+import com.malicki.ticketsspringmvc.service.ClientService;
+import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class LoginController {
 
     @Autowired
-    private LoginDelegate loginDelegate;
+    private ClientService clientService;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView displayLogin(HttpServletRequest request, HttpServletResponse response) {
@@ -27,13 +28,19 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ModelAndView executeLogin(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("client") Client client) {
+    public ModelAndView executeLogin(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("client") Client client) throws SQLException {
         ModelAndView model = null;
+        Client admin = new Client();
+        admin.setFirstName("admin");
+        admin.setEmail("admin@admin");
+        admin.setPassword("admin");
+        if(!clientService.isValidUser("admin@admin","admin"))
+            clientService.addClient(admin);
         try {
-            boolean isValidUser = loginDelegate.isValidUser(client.getEmail(), client.getPassword());
+            boolean isValidUser = clientService.isValidUser(client.getEmail(), client.getPassword());
             if (isValidUser) {
                 System.out.println("User Login Successful");
-                request.setAttribute("loggedInUser", client.getEmail());
+                request.setAttribute("loggedInUser", client.getFirstName() + " " + client.getLastName());
                 model = new ModelAndView("welcome");
             } else {
                 model = new ModelAndView("login");
