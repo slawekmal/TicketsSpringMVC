@@ -46,14 +46,28 @@
 	</tr>
 	<tr>
 		<td>
-			<form:label path="place">
+			<label>
 				<spring:message text="Place"/>
-			</form:label>
+			</label>
 		</td>
 		<td>
-			<form:input path="place" />
+			<select name="placeId">
+                            <c:forEach items="${listPlaces}" var="place">
+                                <option value="${place.id}">${place.name}</option>
+                            </c:forEach>
+                        </select>
 		</td>
 	</tr>
+<!--        <tr>
+		<td>
+			<label>
+				<spring:message text="Date"/>
+			</label>
+		</td>
+		<td>
+                    <input type="date" name="date" />
+		</td> 
+	</tr>-->
 	<tr>
 		<td colspan="2">
 			<c:if test="${!empty event.name}">
@@ -76,6 +90,7 @@
 		<th width="80">ID</th>
 		<th width="120">Name</th>
 		<th width="120">Place</th>
+                <th width="120">Date</th>
 		<th width="60">Edit</th>
 		<th width="60">Delete</th>
 	</tr>
@@ -84,6 +99,7 @@
 			<td>${event.id}</td>
 			<td>${event.name}</td>
 			<td>${event.place}</td>
+                        <td>${event.date}</td>
 			<td><a href="<c:url value='events/edit/${event.id}' />" >Edit</a></td>
 			<td><a href="<c:url value='events/remove/${event.id}' />" >Delete</a></td>
 		</tr>

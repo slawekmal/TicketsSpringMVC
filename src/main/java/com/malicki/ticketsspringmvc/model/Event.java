@@ -80,7 +80,7 @@ public class Event implements Serializable {
 
     @Override
     public String toString() {
-        return "Event{" + "id=" + id + ", place=" + place + ", name=" + name + ", date=" + date + ", tickets=" + tickets + '}';
+        return this.name;
     }
     
     

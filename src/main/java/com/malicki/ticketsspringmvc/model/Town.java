@@ -51,7 +51,7 @@ public class Town implements Serializable {
 
     @Override
     public String toString() {
-        return "Town{" + "id=" + id + ", name=" + name + '}';
+        return this.name;
     }
     
     

@@ -87,7 +87,7 @@ public class Ticket implements Serializable {
 
     @Override
     public String toString() {
-        return "Ticket{" + "id=" + id + ", client=" + client + ", event=" + event + ", sector=" + sector + ", row=" + row + ", place=" + place + '}';
+        return this.client + " " + this.event + " sector:" + this.sector + " row:" + this.row + " place:" + this.place; 
     }
     
     

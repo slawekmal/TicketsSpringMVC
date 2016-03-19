@@ -88,7 +88,7 @@ public class Place implements Serializable {
 
     @Override
     public String toString() {
-        return "Place{" + "id=" + id + ", town=" + town + ", name=" + name + ", address=" + address + ", capacity=" + capacity + '}';
+        return this.name;
     }
     
     

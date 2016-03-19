@@ -44,6 +44,40 @@
 			<form:input path="name" />
 		</td> 
 	</tr>
+        <tr>
+            <td>
+                <label>
+                    <spring:message text="Town"/>
+                </label>
+            </td>
+            <td>
+                <select name="townId">
+                    <c:forEach items="${listTowns}" var="town">
+                        <option value="${town.id}">${town.name}</option>
+                    </c:forEach>
+                </select>
+            </td>
+        </tr>
+        <tr>
+		<td>
+			<form:label path="address">
+				<spring:message text="Address"/>
+			</form:label>
+		</td>
+		<td>
+			<form:input path="address" />
+		</td> 
+	</tr>
+        <tr>
+		<td>
+			<form:label path="capacity">
+				<spring:message text="Capacity"/>
+			</form:label>
+		</td>
+		<td>
+			<form:input path="capacity" />
+		</td> 
+	</tr>
 	<tr>
 		<td colspan="2">
 			<c:if test="${!empty place.name}">
@@ -65,6 +99,9 @@
 	<tr>
 		<th width="80">ID</th>
 		<th width="120">Name</th>
+                <th width="120">Town</th>
+                <th width="120">Address</th>
+                <th width="120">Capacity</th>
 		<th width="60">Edit</th>
 		<th width="60">Delete</th>
 	</tr>
@@ -72,6 +109,9 @@
 		<tr>
 			<td>${place.id}</td>
 			<td>${place.name}</td>
+                        <td>${place.town.name}</td>
+                        <td>${place.address}</td>
+                        <td>${place.capacity}</td>
 			<td><a href="<c:url value='places/edit/${place.id}' />" >Edit</a></td>
 			<td><a href="<c:url value='places/remove/${place.id}' />" >Delete</a></td>
 		</tr>
