@@ -67,7 +67,7 @@ public class ClientDAOImpl implements ClientDAO {
     }
 
     @Override
-    public boolean isValidUser(String email, String password) throws SQLException {
+    public Client isValidUser(String email, String password) throws SQLException {
         Session session = this.sessionFactory.getCurrentSession();
         String sql_query = "from Client as c where c.email = ? and c.password = ?";
         Query query = session.createQuery(sql_query);
@@ -75,9 +75,9 @@ public class ClientDAOImpl implements ClientDAO {
         query.setParameter(1, password);
         List list = query.list();
         if ((list != null) && (list.size() > 0)) {
-            return true;
+            return (Client)list.get(0);
         } else {
-            return false;
+            return null;
         }
     }
 

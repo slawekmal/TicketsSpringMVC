@@ -25,5 +25,5 @@ public interface ClientDAO {
 
     public void removeClient(int id);
 
-    public boolean isValidUser(String username, String password) throws SQLException;
+    public Client isValidUser(String email, String password) throws SQLException;
 }

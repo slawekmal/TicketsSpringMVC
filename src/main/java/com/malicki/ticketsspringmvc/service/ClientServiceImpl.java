@@ -48,7 +48,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     @Transactional
-    public boolean isValidUser(String email, String password) throws SQLException {
+    public Client isValidUser(String email, String password) throws SQLException {
         return ClientDAO.isValidUser(email, password);
     }
 

@@ -18,6 +18,8 @@ public class LoginController {
 
     @Autowired
     private ClientService clientService;
+    
+    public Client loggedIn;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView displayLogin(HttpServletRequest request, HttpServletResponse response) {
@@ -30,17 +32,11 @@ public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView executeLogin(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("client") Client client) throws SQLException {
         ModelAndView model = null;
-        Client admin = new Client();
-        admin.setFirstName("admin");
-        admin.setEmail("admin@admin");
-        admin.setPassword("admin");
-        if(!clientService.isValidUser("admin@admin","admin"))
-            clientService.addClient(admin);
         try {
-            boolean isValidUser = clientService.isValidUser(client.getEmail(), client.getPassword());
-            if (isValidUser) {
-                System.out.println("User Login Successful");
-                request.setAttribute("loggedInUser", client.getFirstName() + " " + client.getLastName());
+            this.loggedIn = clientService.isValidUser(client.getEmail(), client.getPassword());
+            if (this.loggedIn != null) {
+                System.out.println("User Login Successful: " + this.loggedIn);
+                request.setAttribute("loggedInUser", this.loggedIn);
                 model = new ModelAndView("welcome");
             } else {
                 model = new ModelAndView("login");

@@ -19,5 +19,5 @@ public interface ClientService {
 	public List<Client> listClients();
 	public Client getClientById(int id);
 	public void removeClient(int id);
-        public boolean isValidUser(String username, String password) throws SQLException;
+        public Client isValidUser(String email, String password) throws SQLException;
 }
